@@ -1,6 +1,7 @@
 import express from "express"
 import path from "path"
 import dotenv from "dotenv"
+import authRoutes from "./routes/auth.route.js"
 
 dotenv.config()
 
@@ -12,5 +13,7 @@ app.use(express.static(path.join(__dirname,"../frontend/dist")))
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,"../frontend/dist/index.html"))
 })
+
+app.use('/api/auth',authRoutes)
 
 app.listen(PORT,()=>console.log(`Server running on PORT ${PORT}`))
